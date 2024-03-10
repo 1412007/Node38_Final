@@ -266,6 +266,11 @@ const deleteUser = async (req, res) => {
       if (!user) {
         res.status(400).send("Invalid user");
       } else {
+        await conn.datve.destroy({
+          where: {
+            tai_khoan: user.getDataValue("tai_khoan"),
+          },
+        });
         user.destroy();
         user.save();
       }

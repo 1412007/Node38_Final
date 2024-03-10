@@ -1,7 +1,6 @@
 import sequelize from "../models/connect.js";
 import initModels from "../models/init-models.js";
 import { checkToken } from "../config/jwt.js";
-import { Op } from "@sequelize/core";
 import { jwtDecode } from "jwt-decode";
 
 const conn = initModels(sequelize);
