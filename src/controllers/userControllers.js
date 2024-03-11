@@ -181,6 +181,31 @@ const getUserInfo = async (req, res) => {
   }
 };
 
+const getUserInfoByEmail = async (req, res) => {
+  try {
+    let { token } = req.headers;
+    if (checkToken(token).statusCode == 200) {
+      const data = await conn.nguoidung.findOne({
+        attributes: [
+          "tai_khoan",
+          "email",
+          "ho_ten",
+          "so_dt",
+          "loai_nguoi_dung",
+        ],
+        where: {
+          email: req.query.email,
+        },
+      });
+      res.send(data);
+    } else {
+      res.status(401).send("Unauthorized");
+    }
+  } catch (error) {
+    console.log(`Back end error: ${error}`);
+  }
+};
+
 const addUser = async (req, res) => {
   try {
     let { token } = req.headers;
@@ -292,6 +317,7 @@ export {
   getUser,
   searchUserWithPaging,
   getUserInfo,
+  getUserInfoByEmail,
   addUser,
   updateUser,
   deleteUser,

@@ -1,6 +1,5 @@
 import sequelize from "../models/connect.js";
 import initModels from "../models/init-models.js";
-import { Op } from "@sequelize/core";
 import rapphim from "../models/rapphim.js";
 import cumrap from "../models/cumrap.js";
 
