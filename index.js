@@ -190,7 +190,7 @@ const options = {
             },
             hot: {
               type: "boolean",
-              description: "is famous",
+              description: "is popular",
             },
             dang_chieu: {
               type: "boolean",

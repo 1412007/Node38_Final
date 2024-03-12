@@ -29,15 +29,17 @@ const bookTicket = async (req, res) => {
 
 const getShowtime = async (req, res) => {
   try {
-    const showTimes = req.query;
-    const data = await conn.lichchieu.findAll({
-      where: {
-        ma_lich_chieu: showTimes.showtimes,
-      },
-    });
-    if (data.length == 0) {
-      res.status(400).send("Invalid request");
+    const showTimes = req.query.showtimes;
+    console.log(req.query);
+    if (showTimes) {
+      const data = await conn.lichchieu.findAll({
+        where: {
+          ma_lich_chieu: showTimes,
+        },
+      });
+      res.send(data);
     } else {
+      const data = await conn.lichchieu.findAll({});
       res.send(data);
     }
   } catch (error) {
